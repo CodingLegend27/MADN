@@ -1,30 +1,121 @@
 package view;
 import java.awt.*;
-import java.lang.reflect.Array;
 
 import javax.swing.*;
 import controller.*;
 import java.util.*;
 
-
 public class VIEW extends JFrame
 {
     ArrayList <int[]> felder;
+    ArrayList <int[]> blaueshaus;
+    ArrayList <int[]> gelbeshaus;
+    ArrayList <int[]> grüneshaus;
+    ArrayList <int[]> roteshaus;
+    ArrayList <int[]> blauebase;
+    ArrayList <int[]> gelbebase;
+    ArrayList <int[]> grünebase;
+    ArrayList <int[]> rotebase;
     private Canvas canvas;
     private CONTROLLER controller;
     private int[] feld1,feld2,feld3,feld4,feld5,feld6,feld7,feld8,feld9,feld10,feld11,feld12,feld13,feld14,feld15,feld16,feld17,feld18,feld19,feld20,feld21,feld22,feld23,feld24,feld25,feld26,feld27,feld28,feld29,feld30,feld31,feld32,feld33,feld34,feld35,feld36,feld37,feld38,feld39,feld40;
+    private int[] rotbase1,rotbase2,rotbase3,rotbase4,gelbbase1,gelbbase2,gelbbase3,gelbbase4,blaubase1,blaubase2,blaubase3,blaubase4,grünbase1,grünbase2,grünbase3,grünbase4;
+    private int[] grünhaus1,grünhaus2,grünhaus3,grünhaus4, rothaus1, rothaus2, rothaus3, rothaus4, blauhaus1, blauhaus2, blauhaus3, blauhaus4, gelbhaus1, gelbhaus2, gelbhaus3, gelbhaus4;
+    private int playerx = -500,playery = -500;
+    private String playerfarbe;
+
+    // private Graphics g;
     public VIEW(){
 
-        JPanel panel = new JPanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000,1000);
         this.setVisible(true);
         felder = new ArrayList <int[]>();
+        blaueshaus = new ArrayList <int[]>();
+        gelbeshaus = new ArrayList <int[]>();
+        roteshaus = new ArrayList <int[]>();
+        grüneshaus = new ArrayList <int[]>();
+        blauebase = new ArrayList <int[]>();
+        gelbebase = new ArrayList <int[]>();
+        grünebase = new ArrayList <int[]>();
+        rotebase = new ArrayList <int[]>();
+        feld1 = new int[2];
+        feld2 = new int[2];
+        feld3 = new int[2];
+        feld4 = new int[2];
+        feld5 = new int[2];
+        feld6 = new int[2];
+        feld7 = new int[2];
+        feld8 = new int[2];
+        feld9 = new int[2];
+        feld10 = new int[2];
+        feld11 = new int[2];
+        feld12 = new int[2];
+        feld13 = new int[2];
+        feld14 = new int[2];
+        feld15 = new int[2];
+        feld16 = new int[2];
+        feld17 = new int[2];
+        feld18 = new int[2];
+        feld19 = new int[2];
+        feld20 = new int[2];
+        feld21 = new int[2];
+        feld22 = new int[2];
+        feld23 = new int[2];
+        feld24 = new int[2];
+        feld25 = new int[2];
+        feld26 = new int[2];
+        feld27 = new int[2];
+        feld28 = new int[2];
+        feld29 = new int[2];
+        feld30 = new int[2];
+        feld31 = new int[2];
+        feld32 = new int[2];
+        feld33 = new int[2];
+        feld34 = new int[2];
+        feld35 = new int[2];
+        feld36 = new int[2];
+        feld37 = new int[2];
+        feld38 = new int[2];
+        feld39 = new int[2];
+        feld40 = new int[2];
+        grünhaus1 = new int[2];
+        grünhaus2 = new int[2];
+        grünhaus3 = new int[2];
+        grünhaus4 = new int[2];
+        blauhaus1 = new int[2];
+        blauhaus2 = new int[2];
+        blauhaus3 = new int[2];
+        blauhaus4 = new int[2];
+        gelbhaus1 = new int[2];
+        gelbhaus2 = new int[2];
+        gelbhaus3 = new int[2];
+        gelbhaus4 = new int[2];
+        rothaus1 = new int[2];
+        rothaus2 = new int[2];
+        rothaus3 = new int[2];
+        rothaus4 = new int[2];
+        grünbase1 = new int[2];
+        grünbase2 = new int[2];
+        grünbase3 = new int[2];
+        grünbase4 = new int[2];
+        blaubase1 = new int[2];
+        blaubase2 = new int[2];
+        blaubase3 = new int[2];
+        blaubase4 = new int[2];
+        gelbbase1 = new int[2];
+        gelbbase2 = new int[2];
+        gelbbase3 = new int[2];
+        gelbbase4 = new int[2];
+        rotbase1 = new int[2];
+        rotbase2 = new int[2];
+        rotbase3 = new int[2];
+        rotbase4 = new int[2];
         
-        Graphics g = canvas.getGraphics();
-        paint(g);
-
-
+        felderzuordnen();
+        // g = canvas.getGraphics();
+        // paint(g);
+       
     }
     public void felderzuordnen(){
 
@@ -89,13 +180,13 @@ public class VIEW extends JFrame
         feld30[0] = 450;
         feld30[1] = 800;
         feld31[0] = 380;
-        feld31[1] = 730;
+        feld31[1] = 800;
         feld32[0] = 380;
-        feld32[1] = 660;
+        feld32[1] = 730;
         feld33[0] = 380;
-        feld33[1] = 590;
+        feld33[1] = 660;
         feld34[0] = 380;
-        feld34[1] = 520;
+        feld34[1] = 590;
         feld35[0] = 380;
         feld35[1] = 520;
         feld36[0] = 310;
@@ -108,6 +199,78 @@ public class VIEW extends JFrame
         feld39[1] = 520;
         feld40[0] = 100;
         feld40[1] = 450;
+        //base
+        gelbbase1[0] = 100;
+        gelbbase1[1] = 100;
+        gelbbase2[0] = 100;
+        gelbbase2[1] = 170;
+        gelbbase3[0] = 170;
+        gelbbase3[1] = 100;
+        gelbbase4[0] = 170;
+        gelbbase4[1] = 170;
+        
+        blaubase1[0] = 100;
+        blaubase1[1] = 730;
+        blaubase2[0] = 100;
+        blaubase2[1] = 800;
+        blaubase3[0] = 170;
+        blaubase3[1] = 730;
+        blaubase4[0] = 170;
+        blaubase4[1] = 800;
+        
+        rotbase1[0] = 730;
+        rotbase1[1] = 730;
+        rotbase2[0] = 730;
+        rotbase2[1] = 800;
+        rotbase3[0] = 800;
+        rotbase3[1] = 730;
+        rotbase4[0] = 800;
+        rotbase4[1] = 800;
+        
+        grünbase1[0] = 730;
+        grünbase1[1] = 100;
+        grünbase2[0] = 730;
+        grünbase2[1] = 170;
+        grünbase3[0] = 800;
+        grünbase3[1] = 100;
+        grünbase4[0] = 800;
+        grünbase4[1] = 170;
+        //haus
+        gelbhaus1[0] = 175;
+        gelbhaus1[1] = 455;
+        gelbhaus2[0] = 175+70;
+        gelbhaus2[1] = 455;
+        gelbhaus3[0] = 175+140;
+        gelbhaus3[1] = 455;
+        gelbhaus4[0] = 175+210;
+        gelbhaus4[1] = 455;
+        
+        blauhaus1[0] = 455;
+        blauhaus1[1] = 525+210;
+        blauhaus2[0] = 455;
+        blauhaus2[1] = 525+140;
+        blauhaus3[0] = 455;
+        blauhaus3[1] = 525+70;
+        blauhaus4[0] = 455;
+        blauhaus4[1] = 525;
+        
+        rothaus1[0] = 520+210;
+        rothaus1[1] = 455;
+        rothaus2[0] = 520+140;
+        rothaus2[1] = 455;
+        rothaus3[0] = 520+70;
+        rothaus3[1] = 455;
+        rothaus4[0] = 520;
+        rothaus4[1] = 455;
+        
+        grünhaus1[0] = 455;
+        grünhaus1[1] = 175;
+        grünhaus2[0] = 455;
+        grünhaus2[1] = 175+70;
+        grünhaus3[0] = 455;
+        grünhaus3[1] = 175+140;
+        grünhaus4[0] = 455;
+        grünhaus4[1] = 175+210;
         
 
         felder.add(feld1);
@@ -151,129 +314,147 @@ public class VIEW extends JFrame
         felder.add(feld39);
         felder.add(feld40);
 
+        rotebase.add(rotbase1);
+        rotebase.add(rotbase2);
+        rotebase.add(rotbase3);
+        rotebase.add(rotbase4);
+        grünebase.add(grünbase1);
+        grünebase.add(grünbase2);
+        grünebase.add(grünbase3);
+        grünebase.add(grünbase4);
+        gelbebase.add(gelbbase1);
+        gelbebase.add(gelbbase2);
+        gelbebase.add(gelbbase3);
+        gelbebase.add(gelbbase4);
+        blauebase.add(blaubase1);
+        blauebase.add(blaubase2);
+        blauebase.add(blaubase3);
+        blauebase.add(blaubase4);
+
+        blaueshaus.add(blauhaus1);
+        blaueshaus.add(blauhaus2);
+        blaueshaus.add(blauhaus3);
+        blaueshaus.add(blauhaus4);
+        grüneshaus.add(grünhaus1);
+        grüneshaus.add(grünhaus2);
+        grüneshaus.add(grünhaus3);
+        grüneshaus.add(grünhaus4);
+        gelbeshaus.add(gelbhaus1);
+        gelbeshaus.add(gelbhaus2);
+        gelbeshaus.add(gelbhaus3);
+        gelbeshaus.add(gelbhaus4);
+        roteshaus.add(rothaus1);
+        roteshaus.add(rothaus2);
+        roteshaus.add(rothaus3);
+        roteshaus.add(rothaus4);
     }
 
 
     public void paint(Graphics g){
-        super.paint(g);
+        //  super.paint(g);
         g.setColor(Color.black);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(3));
         g.fillRect(0, 0, 1000, 1000);
-        g.setColor(Color.GRAY);
-        //mittlere Reihe oben
-        g.fillOval(100,380,50,50);
-        g.fillOval(170,380,50,50);
-        g.fillOval(240,380,50,50);
-        g.fillOval(310,380,50,50);
-        g.fillOval(380,380,50,50);
-        g.fillOval(520,380,50,50);
-        g.fillOval(590,380,50,50);
-        g.fillOval(660,380,50,50);
-        g.fillOval(730,380,50,50);
-        g.fillOval(800,380,50,50);
-        
-        //mittlere Reige mitte
-        g.fillOval(100,450,50,50);
-        g.fillOval(800,450,50,50);
-        g.setColor(Color.yellow);
-        g.drawOval(175,455,40,40);
-        g.drawOval(175+70,455,40,40);
-        g.drawOval(175+140,455,40,40);
-        g.drawOval(175+210,455,40,40);
-        g.setColor(Color.red);
-        g.drawOval(520,455,40,40);
-        g.drawOval(520+70,455,40,40);
-        g.drawOval(520+140,455,40,40);
-        g.drawOval(520+210,455,40,40);
-        g.setColor(Color.GRAY);
-        
-
-        //mittlere Reihe unten
-        g.fillOval(100,520,50,50);
-        g.fillOval(170,520,50,50);
-        g.fillOval(240,520,50,50);
-        g.fillOval(310,520,50,50);
-        g.fillOval(380,520,50,50);
-        g.fillOval(520,520,50,50);
-        g.fillOval(590,520,50,50);
-        g.fillOval(660,520,50,50);
-        g.fillOval(730,520,50,50);
-        g.fillOval(800,520,50,50);
-
-        //obenlinks nach unten
-        g.fillOval(380,100,50,50);
-        g.fillOval(380,170,50,50);
-        g.fillOval(380,240,50,50);
-        g.fillOval(380,310,50,50);
-            //g.fillOval(380,380,50,50);
-            //g.fillOval(380,520,50,50);
-        g.fillOval(380,590,50,50);
-        g.fillOval(380,660,50,50);
-        g.fillOval(380,730,50,50);
-        g.fillOval(380,800,50,50);
-
-        //obenrechts nach unten
-        g.fillOval(520,100,50,50);
-        g.fillOval(520,170,50,50);
-        g.fillOval(520,240,50,50);
-        g.fillOval(520,310,50,50);
-            //g.fillOval(520,380,50,50);
-            //g.fillOval(520,520,50,50);
-        g.fillOval(520,590,50,50);
-        g.fillOval(520,660,50,50);
-        g.fillOval(520,730,50,50);
-        g.fillOval(520,800,50,50);
-
-        //obenmitte
-        g.fillOval(450,100,50,50);
-        g.fillOval(450,800,50,50);
-        g.setColor(Color.green);
-        g.drawOval(455,175,40,40);
-        g.drawOval(455,175+70,40,40);
-        g.drawOval(455,175+140,40,40);
-        g.drawOval(455,175+210,40,40);
-        g.setColor(Color.blue);
-        g.drawOval(455,595-70,40,40);
-        g.drawOval(455,595,40,40);
-        g.drawOval(455,595+70,40,40);
-        g.drawOval(455,595+140,40,40);
-
-    
-        //Häuser und Startpunkte
-        g.setColor(Color.yellow);
+        g.setColor(Color.white);
+         for(int i = 0; i < 40 ; i++){
+                int[] feld = felder.get(i);
+            g.drawOval( feld[0],feld[1], 50 ,50);
+         }
+         //rote base
+         g.setColor(Color.red);
+         for (int i =0; i<4; i++ ){
+             int[] feld = rotebase.get(i);
+             g.drawOval( feld[0],feld[1], 50 ,50);
+         }
+         //grün base
+         g.setColor(Color.green);
+         for (int i =0; i<4; i++ ){
+             int[] feld = grünebase.get(i);
+             g.drawOval( feld[0],feld[1], 50 ,50);
+         }
+         //gelb base
+         g.setColor(Color.yellow);
+         for (int i =0; i<4; i++ ){
+             int[] feld = gelbebase.get(i);
+             g.drawOval( feld[0],feld[1], 50 ,50);
+         }
+         //blau base
+         g.setColor(Color.blue);
+         for (int i =0; i<4; i++ ){
+             int[] feld = blauebase.get(i);
+             g.drawOval( feld[0],feld[1], 50 ,50);
+         }
+         
+         //blaues haus
+         g.setColor(Color.blue);
+         for (int i =0; i<4; i++ ){
+             int[] feld = blaueshaus.get(i);
+             g.drawOval( feld[0],feld[1], 40 ,40);
+         }
+         //grünes haus
+         g.setColor(Color.green);
+         for (int i =0; i<4; i++ ){
+             int[] feld = grüneshaus.get(i);
+             g.drawOval( feld[0],feld[1], 40 ,40);
+         }
+         //gelbes haus
+         g.setColor(Color.yellow);
+         for (int i =0; i<4; i++ ){
+             int[] feld = gelbeshaus.get(i);
+             g.drawOval( feld[0],feld[1], 40 ,40);
+         }
+         //rotes haus
+         g.setColor(Color.red);
+         for (int i =0; i<4; i++ ){
+             int[] feld = roteshaus.get(i);
+             g.drawOval( feld[0],feld[1], 40 ,40);
+         }
+        // //Startpunkte
+         g.setColor(Color.yellow);
         g.drawOval(100,380,50,50);
-        g.drawOval(100, 100, 52, 52);
-        g.drawOval(100, 170, 50, 50);
-        g.drawOval(170, 100, 50, 50);
-        g.drawOval(170, 170, 50, 50);
         g.setColor(Color.blue);
         g.drawOval(380,800,50,50);
-        g.drawOval(100, 730, 52, 52);
-        g.drawOval(100, 800, 50, 50);
-        g.drawOval(170, 730, 50, 50);
-        g.drawOval(170, 800, 50, 50);
         g.setColor(Color.red);
         g.drawOval(800,520,50,50);
-        g.drawOval(730, 730, 52, 52);
-        g.drawOval(730, 800, 50, 50);
-        g.drawOval(800, 730, 50, 50);
-        g.drawOval(800, 800, 50, 50);
         g.setColor(Color.green);
         g.drawOval(520,100,50,50);
-        g.drawOval(730, 100, 52, 52);
-        g.drawOval(730, 170, 50, 50);
-        g.drawOval(800, 100, 50, 50);
-        g.drawOval(800, 170, 50, 50);
-
+        Color c;
+        switch (playerfarbe) {
+            case "red":  c= Color.red;
+                break;
+            case "blue":  c= Color.blue;
+                break;
+            case "yellow":  c = Color.yellow;    
+                break;
+            case "green" :  c = Color.green;    
+            default: c = Color.black;
+                break;
+        }
+        g.setColor(c);
+        g.fillOval(playerx, playery, 50, 50);
         
+        System.out.println(" sss ssdd" );
     }
+    public void setPlayer(String farbe, int feld){
+        int[] feld_ = felder.get(feld-1);
+        playerx = feld_[0];
+        playery = feld_[1];
+        playerfarbe = farbe;
+        
+        }
+    
 
-    public int getPlayerposition(){
-            return controller.getPlayerPosition();
+
+
+    public void getPlayerposition(){
 
     }
     public static void main(String[] args){
+        
         VIEW v = new VIEW();
+        v.setPlayer("red", 4);
+        v.setPlayer("blue" , 10);
         
     }
 }
-
