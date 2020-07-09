@@ -1,7 +1,6 @@
 # MADN
 Java Implementierung des Spiels "Mensch ärgere dich nicht!"
 
-----
 ## 11. Klasse Informatikprojekt
 -----
 4 Spieler versuchen möglichst schnell, ihre Figuren in einer Reihe in der Mitte in ihrer Farbe einzuparken.
