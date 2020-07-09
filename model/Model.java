@@ -2,6 +2,8 @@ package model;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 public class Model {
@@ -174,24 +176,33 @@ public class Model {
                 else {
                     zielfelder[getNummerSpieler(s)][ueberschuss] = true;
                 }
-                
-                
             }
 
             //  Figur wird auf das Zielfeld bewegt
             else {
                 felder[zielfeld] = s;
             }
-
-            
-
         }
     }
 
-    public boolean[] getZielfeldSpieler(Spieler s) {
+    /**
+     * Methode zur Abfrage der Zielfelder eines Spielers
+     * @param s gegebener Spieler
+     * @return boolesches Array, das die Zielfelder wiederspiegelt
+     */
+    public boolean[] getZielfelderSpieler(Spieler s) {
         return zielfelder[getNummerSpieler(s)];
     }
     
+    /**
+     * Methode zum Setzen neuer Zielfelder eines Spielers
+     * @param zielfelder boolesches Array, das die Zielfelder wiederspiegelt
+     * @param s gegebener Spieler
+     */
+    public void setZielfelderSpieler(boolean[] zielfelder, Spieler s) {
+        this.zielfelder[getNummerSpieler(s)] = zielfelder;
+    }
+
     /**
      * Methode zum Weiterschicken einer Figur, die bereits im Zielfeld eingeparkt ist, weitergefahren
      * @param aktuellesFeld aktuelles Feld im Zielfeld
@@ -199,14 +210,58 @@ public class Model {
      * @param weiter Anzahl der Felder, die die Figur weitergehen soll 
      */
     public void schickeZielFigurenWeiter(int aktuellesFeld, Spieler s, int weiter) {
-        if (aktuellesFeld > 0) {
+        if (aktuellesFeld > 4) {
             throw new InputMismatchException("Die Position einer Figur im Zielfeld kann nicht größer als 4 sein");
         }
 
-        boolean[] aktZielfeld = getZielfeldSpieler(s);
-        // TODO hier weiter machen :)
+        boolean[] aktZielfelder = getZielfelderSpieler(s);
+        aktZielfelder[aktuellesFeld] = false;
+        
+        int summe = aktuellesFeld + weiter;
+        
+        if (summe > 4) {
+            int neuesFeld = 4 - (summe - 4);
+            if (neuesFeld > 4) {
+                throw new Error("Fataler Error in der Programmierung");
+            }
+            
+            // Figur wird aus dem Feld rausgefahren
+            else if (neuesFeld < 1) {
+                int letztesFeld = getNummerLetztesFeld(s);
+                int neuePosition = letztesFeld - neuesFeld;
+                felder[neuePosition] = s;
+            }
 
+            // Spieler wird im Häuschen bewegt
+            else {
+                aktZielfelder[neuesFeld] = true;
+            }
+        }
+        else {
+            aktZielfelder[summe] = true;
+        }
+
+        // die Zielfelder des Spielers werden neu gesetzt
+        setZielfelderSpieler(aktZielfelder, s);
     }  
+
+    public void updateAnzahlenSpieler() {
+        for (Spieler s : spieler) {
+            int numSpieler = getNummerSpieler(s);
+            int anzahlSpielerInZiel = 0;
+            for (boolean wert : zielfelder[numSpieler]) {
+                if (wert) {
+                    anzahlSpielerInZiel ++;
+                }
+            }       
+            s.setFigurenInReihe(anzahlSpielerInZiel);
+            
+            
+            
+
+
+        }
+    }
 
     /**
      * Methode zur Abfrage eines zufälligen Würfelergebnisses
