@@ -175,6 +175,7 @@ public class Model {
                     zielfelder[getNummerSpieler(s)][ueberschuss] = true;
                 }
                 
+                
             }
 
             //  Figur wird auf das Zielfeld bewegt
