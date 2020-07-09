@@ -10,8 +10,8 @@ public class CONTROLLER {
     private VIEW view;
     private Model model;
 
-    public void getPlayerPosition(){
-        
+    public int getPlayerPosition(){
+        return 0;
 
     }
 
