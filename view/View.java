@@ -23,13 +23,17 @@ public class VIEW extends JFrame
     private int[] grünhaus1,grünhaus2,grünhaus3,grünhaus4, rothaus1, rothaus2, rothaus3, rothaus4, blauhaus1, blauhaus2, blauhaus3, blauhaus4, gelbhaus1, gelbhaus2, gelbhaus3, gelbhaus4;
     private int playerx = -500,playery = -500;
     private String playerfarbe;
+    private int rot1,rot2,rot3,rot4,blau1,blau2,blau3,blau4,gelb1,gelb2,gelb3,gelb4,grün1,grün2,grün3,grün4;
 
-    // private Graphics g;
+    private Graphics g;
     public VIEW(){
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1000,1000);
         this.setVisible(true);
+
+        
+
         felder = new ArrayList <int[]>();
         blaueshaus = new ArrayList <int[]>();
         gelbeshaus = new ArrayList <int[]>();
@@ -39,82 +43,80 @@ public class VIEW extends JFrame
         gelbebase = new ArrayList <int[]>();
         grünebase = new ArrayList <int[]>();
         rotebase = new ArrayList <int[]>();
-        feld1 = new int[2];
-        feld2 = new int[2];
-        feld3 = new int[2];
-        feld4 = new int[2];
-        feld5 = new int[2];
-        feld6 = new int[2];
-        feld7 = new int[2];
-        feld8 = new int[2];
-        feld9 = new int[2];
-        feld10 = new int[2];
-        feld11 = new int[2];
-        feld12 = new int[2];
-        feld13 = new int[2];
-        feld14 = new int[2];
-        feld15 = new int[2];
-        feld16 = new int[2];
-        feld17 = new int[2];
-        feld18 = new int[2];
-        feld19 = new int[2];
-        feld20 = new int[2];
-        feld21 = new int[2];
-        feld22 = new int[2];
-        feld23 = new int[2];
-        feld24 = new int[2];
-        feld25 = new int[2];
-        feld26 = new int[2];
-        feld27 = new int[2];
-        feld28 = new int[2];
-        feld29 = new int[2];
-        feld30 = new int[2];
-        feld31 = new int[2];
-        feld32 = new int[2];
-        feld33 = new int[2];
-        feld34 = new int[2];
-        feld35 = new int[2];
-        feld36 = new int[2];
-        feld37 = new int[2];
-        feld38 = new int[2];
-        feld39 = new int[2];
-        feld40 = new int[2];
-        grünhaus1 = new int[2];
-        grünhaus2 = new int[2];
-        grünhaus3 = new int[2];
-        grünhaus4 = new int[2];
-        blauhaus1 = new int[2];
-        blauhaus2 = new int[2];
-        blauhaus3 = new int[2];
-        blauhaus4 = new int[2];
-        gelbhaus1 = new int[2];
-        gelbhaus2 = new int[2];
-        gelbhaus3 = new int[2];
-        gelbhaus4 = new int[2];
-        rothaus1 = new int[2];
-        rothaus2 = new int[2];
-        rothaus3 = new int[2];
-        rothaus4 = new int[2];
-        grünbase1 = new int[2];
-        grünbase2 = new int[2];
-        grünbase3 = new int[2];
-        grünbase4 = new int[2];
-        blaubase1 = new int[2];
-        blaubase2 = new int[2];
-        blaubase3 = new int[2];
-        blaubase4 = new int[2];
-        gelbbase1 = new int[2];
-        gelbbase2 = new int[2];
-        gelbbase3 = new int[2];
-        gelbbase4 = new int[2];
-        rotbase1 = new int[2];
-        rotbase2 = new int[2];
-        rotbase3 = new int[2];
-        rotbase4 = new int[2];
+        feld1 = new int[3];
+        feld2 = new int[3];
+        feld3 = new int[3];
+        feld4 = new int[3];
+        feld5 = new int[3];
+        feld6 = new int[3];
+        feld7 = new int[3];
+        feld8 = new int[3];
+        feld9 = new int[3];
+        feld10 = new int[3];
+        feld11 = new int[3];
+        feld12 = new int[3];
+        feld13 = new int[3];
+        feld14 = new int[3];
+        feld15 = new int[3];
+        feld16 = new int[3];
+        feld17 = new int[3];
+        feld18 = new int[3];
+        feld19 = new int[3];
+        feld20 = new int[3];
+        feld21 = new int[3];
+        feld22 = new int[3];
+        feld23 = new int[3];
+        feld24 = new int[3];
+        feld25 = new int[3];
+        feld26 = new int[3];
+        feld27 = new int[3];
+        feld28 = new int[3];
+        feld29 = new int[3];
+        feld30 = new int[3];
+        feld31 = new int[3];
+        feld32 = new int[3];
+        feld33 = new int[3];
+        feld34 = new int[3];
+        feld35 = new int[3];
+        feld36 = new int[3];
+        feld37 = new int[3];
+        feld38 = new int[3];
+        feld39 = new int[3];
+        feld40 = new int[3];
+        grünhaus1 = new int[3];
+        grünhaus2 = new int[3];
+        grünhaus3 = new int[3];
+        grünhaus4 = new int[3];
+        blauhaus1 = new int[3];
+        blauhaus2 = new int[3];
+        blauhaus3 = new int[3];
+        blauhaus4 = new int[3];
+        gelbhaus1 = new int[3];
+        gelbhaus2 = new int[3];
+        gelbhaus3 = new int[3];
+        gelbhaus4 = new int[3];
+        rothaus1 = new int[3];
+        rothaus2 = new int[3];
+        rothaus3 = new int[3];
+        rothaus4 = new int[3];
+        grünbase1 = new int[3];
+        grünbase2 = new int[3];
+        grünbase3 = new int[3];
+        grünbase4 = new int[3];
+        blaubase1 = new int[3];
+        blaubase2 = new int[3];
+        blaubase3 = new int[3];
+        blaubase4 = new int[3];
+        gelbbase1 = new int[3];
+        gelbbase2 = new int[3];
+        gelbbase3 = new int[3];
+        gelbbase4 = new int[3];
+        rotbase1 = new int[3];
+        rotbase2 = new int[3];
+        rotbase3 = new int[3];
+        rotbase4 = new int[3];
         
         felderzuordnen();
-        // g = canvas.getGraphics();
-        // paint(g);
        
     }
     public void felderzuordnen(){
@@ -349,9 +351,8 @@ public class VIEW extends JFrame
         roteshaus.add(rothaus4);
     }
 
-
     public void paint(Graphics g){
-        //  super.paint(g);
+        super.paint(g);
         g.setColor(Color.black);
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
@@ -419,33 +420,49 @@ public class VIEW extends JFrame
         g.drawOval(800,520,50,50);
         g.setColor(Color.green);
         g.drawOval(520,100,50,50);
-        Color c;
-        switch (playerfarbe) {
-            case "red":  c= Color.red;
-                break;
-            case "blue":  c= Color.blue;
-                break;
-            case "yellow":  c = Color.yellow;    
-                break;
-            case "green" :  c = Color.green;    
-            default: c = Color.black;
-                break;
-        }
-        g.setColor(c);
-        g.fillOval(playerx, playery, 50, 50);
+
         
-        System.out.println(" sss ssdd" );
-    }
-    public void setPlayer(String farbe, int feld){
-        int[] feld_ = felder.get(feld-1);
-        playerx = feld_[0];
-        playery = feld_[1];
-        playerfarbe = farbe;
-        
+         // 1 == blau , 2 == gelb, 3 == grün, 4 == rot
+         for(int i = 0; i< 40 ;i++){
+                int[] feld = felder.get(i);
+                if(feld[2] == 0){
+                    g.setColor(Color.black);
+                    g.fillOval(feld[0], feld[1],50,50 );
+                }
+                else if(feld[2] == 1){
+                    g.setColor(Color.blue);
+                    g.fillOval(feld[0], feld[1],50,50 );
+                }
+                else if(feld[2] == 2){
+                    g.setColor(Color.yellow);
+                    g.fillOval(feld[0], feld[1],50,50 );
+                }
+                else if(feld[2] == 3){
+                    g.setColor(Color.green);
+                    g.fillOval(feld[0], feld[1],50,50 );
+                }
+                else if(feld[2] == 4){
+                    g.setColor(Color.red);
+                    g.fillOval(feld[0], feld[1],50,50 );
+
+                }
+         }
+
+
         }
+        // g.fillOval(playerx, playery, 50, 50);
     
+    public void setPlayer(String figur, int feld){
+        int[] feld_ = felder.get(feld-1);
+        feld_[2] = 4;
+        felder.set( feld-1, feld_);
+        playerfarbe = figur;
 
-
+        this.repaint();
+        
+        
+        }
+        
 
     public void getPlayerposition(){
 
@@ -453,8 +470,17 @@ public class VIEW extends JFrame
     public static void main(String[] args){
         
         VIEW v = new VIEW();
-        v.setPlayer("red", 4);
-        v.setPlayer("blue" , 10);
-        
+        v.setPlayer("rot1", 4);
+        v.setPlayer("blau2" , 10);
+        v.setPlayer("blau3", 12);
+
+
+
+        Scanner sc = new Scanner(System.in);
+        String eingabe = sc.next();
+        if(eingabe != "aaaaa"){
+            v.setPlayer("gelb1", 15);
+            System.out.println("hial");
+        }
     }
 }
