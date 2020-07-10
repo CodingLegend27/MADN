@@ -16,16 +16,12 @@ public class VIEW extends JFrame
     ArrayList <int[]> gelbebase;
     ArrayList <int[]> grünebase;
     ArrayList <int[]> rotebase;
-    private Canvas canvas;
+    ArrayList <int[]> extrafelder;
     private CONTROLLER controller;
     private int[] feld1,feld2,feld3,feld4,feld5,feld6,feld7,feld8,feld9,feld10,feld11,feld12,feld13,feld14,feld15,feld16,feld17,feld18,feld19,feld20,feld21,feld22,feld23,feld24,feld25,feld26,feld27,feld28,feld29,feld30,feld31,feld32,feld33,feld34,feld35,feld36,feld37,feld38,feld39,feld40;
     private int[] rotbase1,rotbase2,rotbase3,rotbase4,gelbbase1,gelbbase2,gelbbase3,gelbbase4,blaubase1,blaubase2,blaubase3,blaubase4,grünbase1,grünbase2,grünbase3,grünbase4;
     private int[] grünhaus1,grünhaus2,grünhaus3,grünhaus4, rothaus1, rothaus2, rothaus3, rothaus4, blauhaus1, blauhaus2, blauhaus3, blauhaus4, gelbhaus1, gelbhaus2, gelbhaus3, gelbhaus4;
-    private int playerx = -500,playery = -500;
-    private String playerfarbe;
-    private int rot1,rot2,rot3,rot4,blau1,blau2,blau3,blau4,gelb1,gelb2,gelb3,gelb4,grün1,grün2,grün3,grün4;
-
-    private Graphics g;
+    
     public VIEW(){
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,7 +29,7 @@ public class VIEW extends JFrame
         this.setVisible(true);
 
         
-
+        //Felder für die Koordinaten und ob sich eine figur darauf befindet(in drittem platz)
         felder = new ArrayList <int[]>();
         blaueshaus = new ArrayList <int[]>();
         gelbeshaus = new ArrayList <int[]>();
@@ -43,6 +39,7 @@ public class VIEW extends JFrame
         gelbebase = new ArrayList <int[]>();
         grünebase = new ArrayList <int[]>();
         rotebase = new ArrayList <int[]>();
+        extrafelder = new ArrayList <int[]>();
         feld1 = new int[3];
         feld2 = new int[3];
         feld3 = new int[3];
@@ -119,6 +116,7 @@ public class VIEW extends JFrame
         felderzuordnen();
        
     }
+    //speichert Koordinaten zu allen Feldern
     public void felderzuordnen(){
 
         feld1[0] =  100 ;
@@ -238,41 +236,41 @@ public class VIEW extends JFrame
         grünbase4[0] = 800;
         grünbase4[1] = 170;
         //haus
-        gelbhaus1[0] = 175;
-        gelbhaus1[1] = 455;
-        gelbhaus2[0] = 175+70;
-        gelbhaus2[1] = 455;
-        gelbhaus3[0] = 175+140;
-        gelbhaus3[1] = 455;
-        gelbhaus4[0] = 175+210;
-        gelbhaus4[1] = 455;
+        gelbhaus1[0] = 170;
+        gelbhaus1[1] = 450;
+        gelbhaus2[0] = 170+70;
+        gelbhaus2[1] = 450;
+        gelbhaus3[0] = 170+140;
+        gelbhaus3[1] = 450;
+        gelbhaus4[0] = 170+210;
+        gelbhaus4[1] = 450;
         
-        blauhaus1[0] = 455;
-        blauhaus1[1] = 525+210;
-        blauhaus2[0] = 455;
-        blauhaus2[1] = 525+140;
-        blauhaus3[0] = 455;
-        blauhaus3[1] = 525+70;
-        blauhaus4[0] = 455;
-        blauhaus4[1] = 525;
+        blauhaus1[0] = 450;
+        blauhaus1[1] = 520+210;
+        blauhaus2[0] = 450;
+        blauhaus2[1] = 520+140;
+        blauhaus3[0] = 450;
+        blauhaus3[1] = 520+70;
+        blauhaus4[0] = 450;
+        blauhaus4[1] = 520;
         
         rothaus1[0] = 520+210;
-        rothaus1[1] = 455;
+        rothaus1[1] = 450;
         rothaus2[0] = 520+140;
-        rothaus2[1] = 455;
+        rothaus2[1] = 450;
         rothaus3[0] = 520+70;
-        rothaus3[1] = 455;
+        rothaus3[1] = 450;
         rothaus4[0] = 520;
-        rothaus4[1] = 455;
+        rothaus4[1] = 450;
         
-        grünhaus1[0] = 455;
-        grünhaus1[1] = 175;
-        grünhaus2[0] = 455;
-        grünhaus2[1] = 175+70;
-        grünhaus3[0] = 455;
-        grünhaus3[1] = 175+140;
-        grünhaus4[0] = 455;
-        grünhaus4[1] = 175+210;
+        grünhaus1[0] = 450;
+        grünhaus1[1] = 170;
+        grünhaus2[0] = 450;
+        grünhaus2[1] = 170+70;
+        grünhaus3[0] = 450;
+        grünhaus3[1] = 170+140;
+        grünhaus4[0] = 450;
+        grünhaus4[1] = 170+210;
         
 
         felder.add(feld1);
@@ -349,18 +347,56 @@ public class VIEW extends JFrame
         roteshaus.add(rothaus2);
         roteshaus.add(rothaus3);
         roteshaus.add(rothaus4);
+
+        extrafelder.add(rotbase1);
+        extrafelder.add(rotbase2);
+        extrafelder.add(rotbase3);
+        extrafelder.add(rotbase4);
+        extrafelder.add(grünbase1);
+        extrafelder.add(grünbase2);
+        extrafelder.add(grünbase3);
+        extrafelder.add(grünbase4);
+        extrafelder.add(gelbbase1);
+        extrafelder.add(gelbbase2);
+        extrafelder.add(gelbbase3);
+        extrafelder.add(gelbbase4);
+        extrafelder.add(blaubase1);
+        extrafelder.add(blaubase2);
+        extrafelder.add(blaubase3);
+        extrafelder.add(blaubase4);
+
+        extrafelder.add(blauhaus1);
+        extrafelder.add(blauhaus2);
+        extrafelder.add(blauhaus3);
+        extrafelder.add(blauhaus4);
+        extrafelder.add(grünhaus1);
+        extrafelder.add(grünhaus2);
+        extrafelder.add(grünhaus3);
+        extrafelder.add(grünhaus4);
+        extrafelder.add(gelbhaus1);
+        extrafelder.add(gelbhaus2);
+        extrafelder.add(gelbhaus3);
+        extrafelder.add(gelbhaus4);
+        extrafelder.add(rothaus1);
+        extrafelder.add(rothaus2);
+        extrafelder.add(rothaus3);
+        extrafelder.add(rothaus4);
     }
 
     public void paint(Graphics g){
-        super.paint(g);
+        //hintergrund
         g.setColor(Color.black);
+        g.fillRect(0, 0, 1000, 1000);
+
+        //breitere Kreise
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
-        g.fillRect(0, 0, 1000, 1000);
+
+        //zeichnet die Felder
         g.setColor(Color.white);
          for(int i = 0; i < 40 ; i++){
                 int[] feld = felder.get(i);
-            g.drawOval( feld[0],feld[1], 50 ,50);
+                g.drawOval( feld[0],feld[1], 50 ,50);
          }
          //rote base
          g.setColor(Color.red);
@@ -391,28 +427,28 @@ public class VIEW extends JFrame
          g.setColor(Color.blue);
          for (int i =0; i<4; i++ ){
              int[] feld = blaueshaus.get(i);
-             g.drawOval( feld[0],feld[1], 40 ,40);
+             g.drawOval( feld[0],feld[1], 50 ,50);
          }
          //grünes haus
          g.setColor(Color.green);
          for (int i =0; i<4; i++ ){
              int[] feld = grüneshaus.get(i);
-             g.drawOval( feld[0],feld[1], 40 ,40);
+             g.drawOval( feld[0],feld[1], 50 ,50);
          }
          //gelbes haus
          g.setColor(Color.yellow);
          for (int i =0; i<4; i++ ){
              int[] feld = gelbeshaus.get(i);
-             g.drawOval( feld[0],feld[1], 40 ,40);
+             g.drawOval( feld[0],feld[1], 50 ,50);
          }
          //rotes haus
          g.setColor(Color.red);
          for (int i =0; i<4; i++ ){
              int[] feld = roteshaus.get(i);
-             g.drawOval( feld[0],feld[1], 40 ,40);
+             g.drawOval( feld[0],feld[1], 50 ,50);
          }
-        // //Startpunkte
-         g.setColor(Color.yellow);
+        //Startpunkte
+        g.setColor(Color.yellow);
         g.drawOval(100,380,50,50);
         g.setColor(Color.blue);
         g.drawOval(380,800,50,50);
@@ -423,6 +459,7 @@ public class VIEW extends JFrame
 
         
          // 1 == blau , 2 == gelb, 3 == grün, 4 == rot
+         //get alle felder durch ob eine Figur drau steht(in feld[2] wird die farbe gespeichert)
          for(int i = 0; i< 40 ;i++){
                 int[] feld = felder.get(i);
                 if(feld[2] == 0){
@@ -447,40 +484,194 @@ public class VIEW extends JFrame
 
                 }
          }
+        for(int i= 0 ; i<32; i++){
+            int[] feld = extrafelder.get(i);
+            if(feld[2] == 0){
+                g.setColor(Color.black);
+                g.fillOval(feld[0], feld[1],50,50 );
+            }
+            else if(feld[2] == 1){
+                g.setColor(Color.blue);
+                g.fillOval(feld[0], feld[1],50,50 );
+            }
+            else if(feld[2] == 2){
+                g.setColor(Color.yellow);
+                g.fillOval(feld[0], feld[1],50,50 );
+            }
+            else if(feld[2] == 3){
+                g.setColor(Color.green);
+                g.fillOval(feld[0], feld[1],50,50 );
+            }
+            else if(feld[2] == 4){
+                g.setColor(Color.red);
+                g.fillOval(feld[0], feld[1],50,50 );
 
+            }
+        } 
 
         }
-        // g.fillOval(playerx, playery, 50, 50);
-    
-    public void setPlayer(String figur, int feld){
+    //übersetzt den String "farbe" in farben
+    public void setPlayer(String farbe, int feld){
         int[] feld_ = felder.get(feld-1);
-        feld_[2] = 4;
-        felder.set( feld-1, feld_);
-        playerfarbe = figur;
-
-        this.repaint();
-        
-        
+        switch(farbe){
+            case "blau":feld_[2]= 1;
+                        break;
+            case "gelb":feld_[2] =2;
+                        break;
+            case "grün":feld_[2] =3;
+                        break;
+            case"rot":  feld_[2] =4;
+                        break;
+            default:    feld_[2] = 0;
+                        break;
         }
-        
+        felder.set( feld-1, feld_);
+        this.repaint();
+    }
+    //setzt feld[2] auf 0 also befindet sich dann keine Figur mehr darauf   
+    public void deletePlayer(int feld){
+        int[] feld_ = felder.get(feld-1);
+        feld_[2] = 0; 
+        this.repaint();
+    }
+    public void movePlayer(String farbe, int feldAlt, int feldNeu){
+        deletePlayer(feldAlt);
+        setPlayer(farbe, feldNeu);
+    }
 
-    public void getPlayerposition(){
+    public void setPlayerBase(String farbe){
+        switch(farbe){
+            case "blau":if(blaubase1[2] == 0){
+                            blaubase1[2] = 1;                    
+                        }
+                        else if(blaubase2[2]== 0){
+                            blaubase2[2] =1;
+                        }
+                        else if(blaubase3[2] == 0){
+                            blaubase3[2] = 1;
+                        }
+                        else if(blaubase4[2] == 0){
+                            blaubase4[2] = 1;
+                        } 
+                        break;
+            case "gelb":if(gelbbase1[2] == 0){
+                            gelbbase1[2] = 2;                    
+                        }
+                        else if(gelbbase2[2]== 0){
+                            gelbbase2[2] =2;
+                        }
+                        else if(gelbbase3[2] == 0){
+                            gelbbase3[2] = 2;
+                        }
+                        else if(gelbbase4[2] == 0){
+                            gelbbase4[2] = 2;
+                        }
+                        break;
+            case "grün":if(grünbase1[2] == 0){
+                            grünbase1[2] = 3;                    
+                        }
+                        else if(grünbase2[2]== 0){
+                            grünbase2[2] =3;
+                        }
+                        else if(grünbase3[2] == 0){
+                            grünbase3[2] = 3;
+                        }
+                        else if(grünbase4[2] == 0){
+                            grünbase4[2] = 3;
+                        }
+                        break;
+            case"rot":  if(rotbase1[2] == 0){
+                            rotbase1[2] = 4;                    
+                        }
+                        else if(rotbase2[2]== 0){
+                            rotbase2[2] =4;
+                        }
+                        else if(rotbase3[2] == 0){
+                            rotbase3[2] = 4;
+                        }
+                        else if(rotbase4[2] == 0){
+                            rotbase4[2] = 4;
+                        }
+                        break;
+            default:    System.out.println("falsche farbeingabe");
+        }
+        this.repaint();
+    }
+    public void deletePlayerBase(String farbe){
+        switch(farbe){
+            case "blau":if(blaubase1[2] == 1){
+                            blaubase1[2] = 0;                    
+                        }
+                        else if(blaubase2[2]== 1){
+                            blaubase2[2] =0;
+                        }
+                        else if(blaubase3[2] == 1){
+                            blaubase3[2] = 0;
+                        }
+                        else if(blaubase4[2] == 1){
+                            blaubase4[2] = 0;
+                        } 
+                        break;
+            case "gelb":if(gelbbase1[2] == 2){
+                            gelbbase1[2] = 0;                    
+                        }
+                        else if(gelbbase2[2]== 2){
+                            gelbbase2[2] =0;
+                        }
+                        else if(gelbbase3[2] == 2){
+                            gelbbase3[2] = 0;
+                        }
+                        else if(gelbbase4[2] == 2){
+                            gelbbase4[2] = 0;
+                        }
+                        break;
+            case "grün":if(grünbase1[2] == 3){
+                            grünbase1[2] = 0;                    
+                        }
+                        else if(grünbase2[2]== 3){
+                            grünbase2[2] =0;
+                        }
+                        else if(grünbase3[2] == 3){
+                            grünbase3[2] = 0;
+                        }
+                        else if(grünbase4[2] == 3){
+                            grünbase4[2] = 0;
+                        }
+                        break;
+            case"rot":  if(rotbase1[2] == 4){
+                            rotbase1[2] = 0;                    
+                        }
+                        else if(rotbase2[2]== 4){
+                            rotbase2[2] =0;
+                        }
+                        else if(rotbase3[2] == 4){
+                            rotbase3[2] = 0;
+                        }
+                        else if(rotbase4[2] == 4){
+                            rotbase4[2] = 0;
+                        }
+                        break;
+            default:    System.out.println("falsche farbeingabe");
+        }
+        this.repaint();
 
     }
     public static void main(String[] args){
         
         VIEW v = new VIEW();
-        v.setPlayer("rot1", 4);
-        v.setPlayer("blau2" , 10);
-        v.setPlayer("blau3", 12);
-
+        v.setPlayer("gelb", 4);
+        v.setPlayer("blau" , 10);
+        v.setPlayer("blau", 12);
+        v.setPlayerBase("blau");
+        v.setPlayerBase("blau");
 
 
         Scanner sc = new Scanner(System.in);
         String eingabe = sc.next();
         if(eingabe != "aaaaa"){
-            v.setPlayer("gelb1", 15);
-            System.out.println("hial");
+            v.deletePlayerBase("blau");
+            v.deletePlayerBase("blau");
+            // v.setPlayer("rot",30);
         }
     }
 }
