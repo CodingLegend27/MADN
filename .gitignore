@@ -24,3 +24,7 @@ hs_err_pid*
 
 # VS Code Counter
 .VSCodeCounter
+
+.gitignore
+
+.DS_Store

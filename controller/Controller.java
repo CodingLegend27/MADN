@@ -5,7 +5,7 @@ import view.*;
 import java.awt.event.ActionListener;
 
 
-public class CONTROLLER {
+public class Controller {
 
     private VIEW view;
     private Model model;
@@ -15,10 +15,17 @@ public class CONTROLLER {
 
     }
 
-    public CONTROLLER(VIEW view, Model model){
+    public Controller() {
 
-        this.view = view;
-        this.model = model;
+        view = new VIEW();
+        model = new Model(4, 4);
+        
     }
+
+
+    public static void main(String[] args) {
+        Controller c = new Controller();
+    }
+
 
 }
