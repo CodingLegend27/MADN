@@ -5,17 +5,17 @@ import view.*;
 import java.awt.event.ActionListener;
 
 
-public class Controller {
+public class CONTROLLER {
 
     private VIEW view;
     private Model model;
 
-    public int getPlayerPosition(){
-        return 0;
+    // public int getPlayerPosition(){
+    //     return 0;
 
-    }
+    // }
 
-    public Controller() {
+    public CONTROLLER() {
 
         view = new VIEW();
         model = new Model(4, 4);
@@ -24,7 +24,7 @@ public class Controller {
 
 
     public static void main(String[] args) {
-        Controller c = new Controller();
+        CONTROLLER c = new CONTROLLER();
     }
 
 
