@@ -15,10 +15,17 @@ public class Controller {
 
     }
 
-    public Controller(VIEW view, Model model){
+    public Controller() {
 
-        this.view = new VIEW();
-        this.model = new Model(4, 4);
+        view = new VIEW();
+        model = new Model(4, 4);
+        
     }
+
+
+    public static void main(String[] args) {
+        Controller c = new Controller();
+    }
+
 
 }

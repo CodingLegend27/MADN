@@ -50,6 +50,22 @@ public class Spieler {
     }
 
     /**
+     * Methode zum Setzen der Anzahl der Figuren in Reihe 
+     * @param anzahl Anzahl der Figuren in der Mitte, in einer Reihe
+     */
+    public void setFigurenInReihe(int anzahl) {
+        numFigurenInReihe = anzahl;
+    }  
+
+    /**
+     * Methode zum Setzten der Anzahl der Figuren außerhalb
+     * @param anzahl Anzahl der Figuren, die nicht auf dem Spielfeld sind
+     */
+    public void setFigurenAusserhalb(int anzahl) {
+        numFigurenAusserhalb = anzahl;
+    }
+
+    /**
      * Methode zum Ermitteln des Namen des Spielers
      * @return Name des Spielers
      */
