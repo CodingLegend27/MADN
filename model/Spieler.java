@@ -48,6 +48,15 @@ public class Spieler {
     public int getAnzahlFigurenInReihe() {
         return numFigurenInReihe;
     }
+    
+    /**
+     * Methode zum Ermitteln der Anzahl der FIguren, die sich auf dem Spielfeld befinden.
+     * Ohne diejenigen Figuren, die bereits in der Mitte eingeparkt sind.s
+     * @return Anzahl der Figuren
+     */
+    public int getAnzahlFigurenAufSpielfeld() {
+        return getAnzahlFigurenGesamt() - getAnzahlFigurenInReihe() - getAnzahlFigurenAusserhalb();
+    }
 
     /**
      * Methode zum Setzen der Anzahl der Figuren in Reihe 
@@ -87,5 +96,17 @@ public class Spieler {
      */
     public String getFarbe() {
         return farbe;
+    }
+
+    public void raiseNumFigurenInReihe() {
+        numFigurenInReihe ++;
+    }
+
+    public void lowerNumFigurenInReihe() {
+        numFigurenInReihe --;
+    }
+
+    public void lowerNumFigurenAusserhalb() {
+        numFigurenAusserhalb --;
     }
 }

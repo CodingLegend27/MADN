@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -72,7 +74,7 @@ public class Model {
      * @param nameSpieler Name des Spielers
      * @return Anzahl der Figuren oder -1 falls Name nicht gefunden
      */
-    public int getAnzahlFigurenAusserhalb(final String nameSpieler) {
+    public int getAnzahlFigurenAusserhalb(String nameSpieler) {
         for (final Spieler s : spieler) {
             if (s.getName().equals(nameSpieler)) {
                 return s.getAnzahlFigurenAusserhalb();
@@ -80,9 +82,25 @@ public class Model {
         }
         return -1;
     }
+    
+    /**
+     * Methode zum Ermitteln der Feldnummern der Figuren, die der Spieler auf dem Spielfeld hat
+     * @param s gegebener Spieler 
+     * @return Array mit den Feldnummer der Figuren
+     */
+    public ArrayList<Integer> getNumFelderFiguren(Spieler s) {
+        ArrayList<Integer> numFelderFiguren = new ArrayList<Integer>();
+        for (Spieler feld : felder) {
+            if (feld == s) {
+                numFelderFiguren.add(Arrays.asList(felder).indexOf(feld));
+            }
+        }
+        Collections.reverse(numFelderFiguren);
+        return numFelderFiguren;
+    }
 
     /**
-     * Methode zur Abfrage der aktuellen Spielsituation des Spielfelds (außerhalb)
+     * Methode zur Abfrage der aktuellen Spielsituation des Spielfelds
      * @return Array mit den Spielfiguren der jeweiligen Spielern
      */
     public Spieler[] getAktuellesSpielfeld() {
@@ -113,7 +131,7 @@ public class Model {
      */
     public int getNummerStartFeld(Spieler s) {
         int indexSpieler = getNummerSpieler(s);
-        int startPosition = indexSpieler * 11;
+        int startPosition = indexSpieler * 10;
         return startPosition;
     }
 
@@ -124,7 +142,16 @@ public class Model {
      */
     public int getNummerLetztesFeld(Spieler s) {
         int startPosition = getNummerStartFeld(s);
-        int letztesFeld = startPosition-1;
+        // falls das Startfeld jenes Feld mit Index 0 ist,
+        // so ist das letztmöglich befahrbare Spielfeld jenes mit Index 40
+        int letztesFeld;
+        if (startPosition == 0){
+            letztesFeld = 40;
+        }
+        else {
+            letztesFeld = startPosition-1;
+        }
+        
         return letztesFeld;
     }
 
@@ -135,6 +162,7 @@ public class Model {
     public void neueFigurAufStart(Spieler s) {
         int startPosition = getNummerStartFeld(s);
         felder[startPosition] = s;
+        s.lowerNumFigurenAusserhalb();
     }
 
 
@@ -145,10 +173,19 @@ public class Model {
      * @param weiter Anzahl der Felder, die die Figur weitergehen soll
      */
     public void schickeFigureWeiter(int aktuellesFeld, Spieler s, int weiter) {
-        felder[aktuellesFeld] = null;
+        
 
-        if (felder[aktuellesFeld] == s) {
+        // hier wird .equals() benötigt statt '=='
+        if (felder[aktuellesFeld].equals(s)) {
+            felder[aktuellesFeld] = null;
             int zielfeld = aktuellesFeld + weiter;
+
+            
+
+            // über 40 --> beginnt wieder bei 0
+            if (zielfeld >= 40) {
+                zielfeld -= 40;
+            }
 
             // falls eine Figur bereits auf dem Spielfeld ist
             // wird diese wieder auf die Startposition gestellt
@@ -156,14 +193,22 @@ public class Model {
                 neueFigurAufStart(felder[zielfeld]);
             }
 
-            // über 40 --> beginnt wieder bei 0
-            if (zielfeld >= 40) {
-                zielfeld -= 40;
-            }
-
             // falls das Zielfeld weiter liegen würde, als der Spieler erreichen könnte
             int letztesFeld = getNummerLetztesFeld(s);
-            if (zielfeld > letztesFeld) {
+
+            int startFeld = getNummerStartFeld(s);
+            // Überprüfung, ob die Figur in die mittlere Reihe eingeparkt werden kann
+            // Vereinfachung von 
+            // if (startFeld != 0) {
+            //     if (aktuellesFeld < letztesFeld && zielfeld > letztesFeld)
+            // --> zu:
+            if ((startFeld != 0 && aktuellesFeld < letztesFeld && zielfeld > letztesFeld) || (startFeld == 0 && aktuellesFeld < letztesFeld && zielfeld < letztesFeld))
+                
+            
+            {
+            
+        
+            // if (zielfeld > letztesFeld) {
                 int ueberschuss = zielfeld - letztesFeld;
 
                 // der Überschuss ist größer als 4 und der Spieler geht sozusagen wieder zurück
@@ -175,6 +220,8 @@ public class Model {
                 // Figur kann eingeparkt werden
                 else {
                     zielfelder[getNummerSpieler(s)][ueberschuss] = true;
+                    System.out.println("Alarrmrmmm");
+                    s.raiseNumFigurenInReihe();
                 }
             }
 
@@ -182,6 +229,10 @@ public class Model {
             else {
                 felder[zielfeld] = s;
             }
+        }
+        
+        else {
+            System.out.println("Fehler im Model bei schickeFigureWeiter");
         }
     }
 
@@ -201,6 +252,13 @@ public class Model {
      */
     public void setZielfelderSpieler(boolean[] zielfelder, Spieler s) {
         this.zielfelder[getNummerSpieler(s)] = zielfelder;
+        int anzahl = 0;
+        for (boolean b : zielfelder) {
+            if (b) {
+                anzahl++;
+            }
+        }
+        s.setFigurenInReihe(anzahl);
     }
 
     /**
@@ -230,6 +288,7 @@ public class Model {
                 int letztesFeld = getNummerLetztesFeld(s);
                 int neuePosition = letztesFeld - neuesFeld;
                 felder[neuePosition] = s;
+                s.lowerNumFigurenInReihe();
             }
 
             // Spieler wird im Häuschen bewegt

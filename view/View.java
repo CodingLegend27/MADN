@@ -512,7 +512,9 @@ public class VIEW extends JFrame
         }
     //übersetzt den String "farbe" in farben
     public void setPlayer(String farbe, int feld){
-        int[] feld_ = felder.get(feld-1);
+        // Change von Chrissi
+        // int[] feld_ = felder.get(feld-1);
+        int[] feld_ = felder.get(feld);
         switch(farbe){
             case "blau":feld_[2]= 1;
                         break;
@@ -525,12 +527,16 @@ public class VIEW extends JFrame
             default:    feld_[2] = 0;
                         break;
         }
-        felder.set( feld-1, feld_);
+        
+        felder.set( feld, feld_);
+        // felder.set( feld-1, feld_);
         this.repaint();
     }
     //setzt feld[2] auf 0 also befindet sich dann keine Figur mehr darauf   
     public void deletePlayer(int feld){
-        int[] feld_ = felder.get(feld-1);
+        // Change von Chrissi
+        // int[] feld_ = felder.get(feld-1);
+        int[] feld_ = felder.get(feld);
         feld_[2] = 0; 
         this.repaint();
     }
