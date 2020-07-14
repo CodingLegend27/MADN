@@ -145,14 +145,19 @@ public class Model {
         // falls das Startfeld jenes Feld mit Index 0 ist,
         // so ist das letztmöglich befahrbare Spielfeld jenes mit Index 40
         int letztesFeld;
-        if (startPosition == 0){
-            letztesFeld = 40;
-        }
-        else {
-            letztesFeld = startPosition-1;
-        }
         
-        return letztesFeld;
+        // TODO Bug Fix #1
+        // if (startPosition == 0){
+        //     letztesFeld = 40;
+        // }
+        // else {
+        //     letztesFeld = startPosition-1;
+        // }
+            
+        // return letztesFeld;
+
+
+        return startPosition-1;
     }
 
     /**
@@ -181,15 +186,16 @@ public class Model {
             int zielfeld = aktuellesFeld + weiter;
 
             
-
-            // über 40 --> beginnt wieder bei 0
-            if (zielfeld >= 40) {
-                zielfeld -= 40;
-            }
+            // TODO Test ob benötigt wird
+            // // über 40 --> beginnt wieder bei 0
+            // if (zielfeld >= 40) {
+            //     zielfeld -= 40;
+            // }
 
             // falls eine Figur bereits auf dem Spielfeld ist
             // wird diese wieder auf die Startposition gestellt
-            if (felder[zielfeld] != null) {
+            // TODO check Bug fix '&& zielfeld < 40'
+            if (felder[zielfeld] != null && zielfeld < 40) {
                 neueFigurAufStart(felder[zielfeld]);
             }
 
@@ -197,6 +203,7 @@ public class Model {
             int letztesFeld = getNummerLetztesFeld(s);
 
             int startFeld = getNummerStartFeld(s);
+            
             // Überprüfung, ob die Figur in die mittlere Reihe eingeparkt werden kann
             // Vereinfachung von 
             // if (startFeld != 0) {
