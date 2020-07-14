@@ -176,8 +176,9 @@ public class Model {
      * @param aktuellesFeld aktuelles Feld auf dem seine Spielfigur steht
      * @param s Spieler der seine Figur weiter schicken will
      * @param weiter Anzahl der Felder, die die Figur weitergehen soll
+     * @return gibt die Nummer des Zielfelds zurück
      */
-    public void schickeFigureWeiter(int aktuellesFeld, Spieler s, int weiter) {
+    public int schickeFigureWeiter(int aktuellesFeld, Spieler s, int weiter) {
         
 
         // hier wird .equals() benötigt statt '=='
@@ -188,9 +189,9 @@ public class Model {
             
             // TODO Test ob benötigt wird
             // // über 40 --> beginnt wieder bei 0
-            // if (zielfeld >= 40) {
-            //     zielfeld -= 40;
-            // }
+            if (zielfeld >= 40) {
+                zielfeld -= 40;
+            }
 
             // falls eine Figur bereits auf dem Spielfeld ist
             // wird diese wieder auf die Startposition gestellt
@@ -210,8 +211,6 @@ public class Model {
             //     if (aktuellesFeld < letztesFeld && zielfeld > letztesFeld)
             // --> zu:
             if ((startFeld != 0 && aktuellesFeld < letztesFeld && zielfeld > letztesFeld) || (startFeld == 0 && aktuellesFeld < letztesFeld && zielfeld < letztesFeld))
-                
-            
             {
             
         
@@ -227,7 +226,7 @@ public class Model {
                 // Figur kann eingeparkt werden
                 else {
                     zielfelder[getNummerSpieler(s)][ueberschuss] = true;
-                    System.out.println("Alarrmrmmm");
+                    return 
                     s.raiseNumFigurenInReihe();
                 }
             }
@@ -236,11 +235,17 @@ public class Model {
             else {
                 felder[zielfeld] = s;
             }
+
+            return zielfeld;
         }
         
         else {
             System.out.println("Fehler im Model bei schickeFigureWeiter");
+
+            return -1;
         }
+
+        
     }
 
     /**
