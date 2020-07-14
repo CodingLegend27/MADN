@@ -225,8 +225,7 @@ public class Model {
 
                 // Figur kann eingeparkt werden
                 else {
-                    zielfelder[getNummerSpieler(s)][ueberschuss] = true;
-                    return 
+                    zielfelder[getNummerSpieler(s)][ueberschuss] = true; 
                     s.raiseNumFigurenInReihe();
                 }
             }
