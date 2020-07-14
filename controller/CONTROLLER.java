@@ -106,8 +106,8 @@ public class CONTROLLER {
                     int numFigur = getSpielerNummer(spieler);
                     int feldNummer = model.getNumFelderFiguren(spieler).get(numFigur-1);
                     
-                    model.schickeFigureWeiter(feldNummer, spieler, wuerfelErgebnis);
-                    view.movePlayer(spieler.getFarbe(), feldNummer, feldNummer + wuerfelErgebnis);
+                    int zielfeld = model.schickeFigureWeiter(feldNummer, spieler, wuerfelErgebnis);
+                    view.movePlayer(spieler.getFarbe(), feldNummer, zielfeld);
                     wait(3000);
 
                 }
