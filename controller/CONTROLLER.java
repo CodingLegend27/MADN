@@ -14,13 +14,6 @@ public class CONTROLLER {
 
     private Spieler[] reihenfolge;
 
-    // public int getPlayerPosition(){
-    //     return 0;
-
-    // }
-
-
-
     public CONTROLLER() {
 
         view = new VIEW();
