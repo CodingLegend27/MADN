@@ -60,12 +60,12 @@ public class CONTROLLER {
             numFigur = Integer.valueOf(eingabe);
         } catch (Exception e) {
             System.out.println("> Bitte eine Zahl eingeben! \n");
-            getSpielerNummer(s);
+            return getSpielerNummer(s);
         }
 
         if (numFigur > anzahlFigurenAufFeld || numFigur == 0) {
             System.out.println("Bitte eine gültige Figur eingeben! \n");
-            getSpielerNummer(s);
+            return getSpielerNummer(s);
         }
 
         return numFigur;
